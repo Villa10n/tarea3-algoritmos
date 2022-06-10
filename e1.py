@@ -91,7 +91,7 @@ def torneo(array):
         for j in range(3):
             num = random.randint(0,len(fitness)-1)
             valores.append(fitness[num])
-        ind = ind.index(max(valores))
+        ind = fitness.index(max(valores))
         ganadores.append(array[ind])
 
     return ganadores
