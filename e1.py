@@ -1,16 +1,27 @@
 import random
 
-def funcionFitness():
-    pass
+def funcionFitness(array):
+    # Fitness individual de cada solucion
+    fitnessIndividual = []
+    for i in array:
+        x = i[0]
+        y = i[1]
+        total = x*x * y - x * y * y
+        fitnessIndividual.append(total)
+    # Suma de todos los fitness
+    sumTotal = 0
+    for i in fitnessIndividual:
+        sumTotal += i
+
+    return [fitnessIndividual, sumTotal]
 
 def mutacion(array):
-    # array del tipo = [[01000, 11011], [00100, 11000]]
     List = [0, 1]
     print()
     array2 = []
     for i in array:
-        izq = i[0] # 01000
-        der = i[1] # 11011
+        izq = i[0]
+        der = i[1]
         palabra1 = ''
         for j in izq:
             cambiar = random.choices(List, weights=(99, 1), k=1)
@@ -35,11 +46,23 @@ def mutacion(array):
         array2.append(concatenacion)
     return array2
 
-def cruzamiento():
-    pass
+def cruzamiento(array):
+    hijos = []
+    for i in array:
+        x = i[0]
+        y = i[1]
+        hijo1 = x[0] + x[1] + y[2] + y[3] + y[4]
+        hijo2 = y[0] + y[1] + x[2] + x[3] + x[4]
+        hijos.append([hijo1, hijo2])
+    return hijos
 
 def poblacionInicial():
-    pass
+    array = []
+    for i in range(0, 6):
+        number1 = random.randint(0, 31)
+        number2 = random.randint(0, 31)
+        array.append([number1, number2])
+    return array
 
 def reemplazo():
     pass
@@ -67,8 +90,13 @@ def numero_binario(array):
         array2.append(pos)
     return array2
 
-inicial = [[2, 5], [24, 0]]
-binarios = numero_binario(inicial)
-print(binarios)
-numeros = binario_numero(binarios)
-print(numeros)
+# Creamos la poblacion inicial
+poblacionInicial = poblacionInicial()
+print("Poblacion inicial: ", poblacionInicial)
+binarios = numero_binario(poblacionInicial)
+print("Binarios: ", binarios)
+cruce = cruzamiento(binarios)
+print("Hijos: ", cruce)
+
+# Transformamos la poblacion inicial a numeros binarios
+#print(binarios, "\n")
