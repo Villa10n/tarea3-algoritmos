@@ -130,8 +130,8 @@ def maximizar(array):
 
 
 # Creamos la poblacion inicial
-poblacionInicial = poblacionInicial()
-print("Poblacion inicial: ", poblacionInicial)
+poblacioninicial = poblacionInicial()
+print("Poblacion inicial: ", poblacioninicial)
 # Ejecutamos la funcion maximizar
-poblacionNueva = maximizar(poblacionInicial)
+poblacionNueva = maximizar(poblacioninicial)
 print("Poblacion nueva: ", poblacionNueva)
