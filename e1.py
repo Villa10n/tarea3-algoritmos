@@ -67,15 +67,16 @@ def reemplazo(array1,array2):
     fitness1 = funcionFitness(array1) 
     fitness2 = funcionFitness(array2) 
     padres = heapq.nlargest(2,fitness1)
-    hijos = heapq.nlargest(len(array2) - 3, fitness2)
+    hijos = heapq.nlargest(len(array2) - 2, fitness2)
+
     #Seleccionar padres
-    for i in range(len(padres) - 1):
+    for i in range(len(padres)):
         valor = padres[i]
         ind = fitness1.index(valor)
         arrayf.append(array1[ind])
     
     #Seleccionar hijos
-    for i in range(len(hijos) - 1):
+    for i in range(len(hijos)):
         valor = hijos[i]
         ind = fitness2.index(valor)
         arrayf.append(array2[ind])
@@ -86,7 +87,7 @@ def torneo(array):
     fitness = funcionFitness(array)
     ganadores = []
 
-    for i in range(len(fitness) - 1 ):
+    for i in range(len(fitness)):
         valores = []
         for j in range(3):
             num = random.randint(0,len(fitness)-1)
