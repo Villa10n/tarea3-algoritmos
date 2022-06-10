@@ -77,10 +77,19 @@ def reemplazo(array1,array2):
     return arrayf
 
 def torneo(array):
-    pass
+    fitness = funcionFitness(array)
+    ganadores = []
 
-def calcularProb(array):
-    pass
+    for i in range(len(fitness) - 1 ):
+        valores = []
+        for j in range(3):
+            num = random.randint(0,len(fitness)-1)
+            valores.append(fitness[num])
+        ind = ind.index(max(valores))
+        ganadores.append(array[ind])
+        
+    return ganadores
+
 
 
 def binario_numero(array):
