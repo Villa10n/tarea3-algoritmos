@@ -54,9 +54,9 @@ def cruzamiento(array):
     hijos_m = mutacion(hijos)
     return hijos_m
 
-def poblacionInicial():
+def poblacionInicial(N):
     array = []
-    for i in range(0, 6):
+    for i in range(N):
         number1 = random.randint(0, 31)
         number2 = random.randint(0, 31)
         array.append([number1, number2])
@@ -131,7 +131,7 @@ def maximizar(array):
 
 
 # Creamos la poblacion inicial
-poblacioninicial = poblacionInicial()
+poblacioninicial = poblacionInicial(6)
 print("Poblacion inicial: ", poblacioninicial)
 # Ejecutamos la funcion maximizar
 poblacionNueva = maximizar(poblacioninicial)
