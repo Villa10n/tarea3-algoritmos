@@ -44,11 +44,31 @@ def poblacionInicial():
 def reemplazo():
     pass
 
-def binario_numero():
-    pass
+def binario_numero(array):
+    array2 = []
+    for i in array:
+        pos = []
+        for j in i:
+            number = int(j, 2)
+            pos.append(number)
+        array2.append(pos)
+    return array2
 
-def numero_binario():
-    pass
+def numero_binario(array):
+    array2 = []
+    for i in array:
+        pos = []
+        for j in i:
+            binario = format(j, "b")
+            largo = len(binario)
+            agregar = '0'*(5 - largo)
+            final = agregar + binario
+            pos.append(final)
+        array2.append(pos)
+    return array2
 
-inicial = [['01000', '11011'], ['00100', '11000']]
-print(mutacion(inicial))
+inicial = [[2, 5], [24, 0]]
+binarios = numero_binario(inicial)
+print(binarios)
+numeros = binario_numero(binarios)
+print(numeros)
