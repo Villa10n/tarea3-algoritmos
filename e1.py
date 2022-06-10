@@ -8,12 +8,8 @@ def funcionFitness(array):
         y = i[1]
         total = x*x * y - x * y * y
         fitnessIndividual.append(total)
-    # Suma de todos los fitness
-    sumTotal = 0
-    for i in fitnessIndividual:
-        sumTotal += i
 
-    return [fitnessIndividual, sumTotal]
+    return fitnessIndividual
 
 def mutacion(array):
     List = [0, 1]
@@ -54,7 +50,8 @@ def cruzamiento(array):
         hijo1 = x[0] + x[1] + y[2] + y[3] + y[4]
         hijo2 = y[0] + y[1] + x[2] + x[3] + x[4]
         hijos.append([hijo1, hijo2])
-    return hijos
+    hijos_m = mutacion(hijos)
+    return hijos_m
 
 def poblacionInicial():
     array = []
@@ -87,10 +84,8 @@ def torneo(array):
             valores.append(fitness[num])
         ind = ind.index(max(valores))
         ganadores.append(array[ind])
-        
+
     return ganadores
-
-
 
 def binario_numero(array):
     array2 = []
@@ -115,13 +110,19 @@ def numero_binario(array):
         array2.append(pos)
     return array2
 
+def maximizar(array):
+    pre_seleccion = torneo(array)
+    binario = numero_binario(pre_seleccion)
+    hijos_b = cruzamiento(binario)
+    hijos = binario_numero(hijos_b)
+    seleccion = reemplazo(pre_seleccion,hijos)
+
+    return seleccion
+
+
 # Creamos la poblacion inicial
 poblacionInicial = poblacionInicial()
 print("Poblacion inicial: ", poblacionInicial)
-binarios = numero_binario(poblacionInicial)
-print("Binarios: ", binarios)
-cruce = cruzamiento(binarios)
-print("Hijos: ", cruce)
-
-# Transformamos la poblacion inicial a numeros binarios
-#print(binarios, "\n")
+# Ejecutamos la funcion maximizar
+poblacionNueva = maximizar(poblacionInicial)
+print("Poblacion nueva: ", poblacionNueva)
