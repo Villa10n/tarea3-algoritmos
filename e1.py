@@ -64,8 +64,24 @@ def poblacionInicial():
         array.append([number1, number2])
     return array
 
-def reemplazo():
+def reemplazo(array1,array2):
+    arrayf = []
+    #Seleccionar padres
+    arrayf.append(array1[0])
+    arrayf.append(array1[1])
+
+    #Seleccionar hijos
+    for i in range(len(array2)-3):
+        arrayf.append(array2[i])
+    
+    return arrayf
+
+def torneo(array):
     pass
+
+def calcularProb(array):
+    pass
+
 
 def binario_numero(array):
     array2 = []
