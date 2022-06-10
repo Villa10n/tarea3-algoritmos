@@ -1,4 +1,5 @@
 import random
+import heapq
 
 def funcionFitness(array):
     # Fitness individual de cada solucion
@@ -63,13 +64,21 @@ def poblacionInicial():
 
 def reemplazo(array1,array2):
     arrayf = []
+    fitness1 = funcionFitness(array1) 
+    fitness2 = funcionFitness(array2) 
+    padres = heapq.nlargest(2,fitness1)
+    hijos = heapq.nlargest(len(array2) - 3, fitness2)
     #Seleccionar padres
-    arrayf.append(array1[0])
-    arrayf.append(array1[1])
-
+    for i in range(len(padres) - 1):
+        valor = padres[i]
+        ind = fitness1.index(valor)
+        arrayf.append(array1[ind])
+    
     #Seleccionar hijos
-    for i in range(len(array2)-3):
-        arrayf.append(array2[i])
+    for i in range(len(hijos) - 1):
+        valor = hijos[i]
+        ind = fitness2.index(valor)
+        arrayf.append(array2[ind])
     
     return arrayf
 
