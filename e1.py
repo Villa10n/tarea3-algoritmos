@@ -152,8 +152,8 @@ def maximizar(array):
     return [maxi[0], array[ind]]
 
 
-pobla_inicial = poblacionInicial(6)
-for i in range(0, 100):
+pobla_inicial = poblacionInicial(5) # 5 / 6 / 7 / 8 / 9 / 10
+for i in range(0, 5): # 5 / 50 / 100
     print("Iteracion numero: ", i+1)
     print("Poblacion inicial: ", pobla_inicial)
     # Ejecutamos la funcion nuevaGeneracion
