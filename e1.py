@@ -152,12 +152,15 @@ def maximizar(array):
     return [maxi[0], array[ind]]
 
 
-# Creamos la poblacion inicial
-poblacioninicial = poblacionInicial(3)
-print("Poblacion inicial: ", poblacioninicial)
-# Ejecutamos la funcion nuevaGeneracion
-poblacionNueva = nuevaGeneracion(poblacioninicial)
-print("Poblacion nueva: ", poblacionNueva)
-# Se busca el mejor valor obtenido de la nueva generacion de soluciones.
-[maximo, solucion] = maximizar(poblacionNueva)
-print("Maximo de la funcion :", maximo, "| En los valores :",solucion)
+pobla_inicial = poblacionInicial(6)
+for i in range(0, 100):
+    print("Iteracion numero: ", i+1)
+    print("Poblacion inicial: ", pobla_inicial)
+    # Ejecutamos la funcion nuevaGeneracion
+    poblacionNueva = nuevaGeneracion(pobla_inicial)
+    print("Poblacion nueva: ", poblacionNueva)
+    # Se busca el mejor valor obtenido de la nueva generacion de soluciones.
+    [maximo, solucion] = maximizar(poblacionNueva)
+    print("Maximo de la funcion :", maximo, "| En los valores :",solucion)
+    pobla_inicial = poblacionNueva
+    print("---------------------------------------------------------------------")
