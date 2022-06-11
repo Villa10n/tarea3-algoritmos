@@ -44,14 +44,28 @@ def mutacion(array):
     return array2
 
 def cruzamiento(array):
+    #print("Array que se cruzara :", array)
     hijos = []
-    for i in array:
-        x = i[0]
-        y = i[1]
-        hijo1 = x[0] + x[1] + y[2] + y[3] + y[4]
-        hijo2 = y[0] + y[1] + x[2] + x[3] + x[4]
-        hijos.append([hijo1, hijo2])
+    n = 0
+    if(len(array)%2 == 0):
+        for i in range(len(array)):
+            if(n < len(array)):
+                hijo1 = (array[n][0], array[n+1][1])
+                hijo2 = (array[n+1][0], array[n][1])
+                hijos.append(hijo1)
+                hijos.append(hijo2)
+                n += 2
+    else:
+        for i in range(len(array)):
+            if(n < len(array) - 1):
+                hijo1 = (array[n][0], array[n+1][1])
+                hijo2 = (array[n+1][0], array[n][1])
+                hijos.append(hijo1)
+                hijos.append(hijo2)
+                n += 2
+        hijos.append(array[-1])
     hijos_m = mutacion(hijos)
+    #print("Hijos finales :", hijos_m)
     return hijos_m
 
 def poblacionInicial(N):
@@ -94,6 +108,8 @@ def torneo(array):
             valores.append(fitness[num])
         ind = fitness.index(max(valores))
         ganadores.append(array[ind])
+    
+    #print("Ganadores del torneo : ", ganadores)
 
     return ganadores
 
@@ -137,10 +153,11 @@ def maximizar(array):
 
 
 # Creamos la poblacion inicial
-poblacioninicial = poblacionInicial(6)
+poblacioninicial = poblacionInicial(3)
 print("Poblacion inicial: ", poblacioninicial)
 # Ejecutamos la funcion nuevaGeneracion
 poblacionNueva = nuevaGeneracion(poblacioninicial)
 print("Poblacion nueva: ", poblacionNueva)
+# Se busca el mejor valor obtenido de la nueva generacion de soluciones.
 [maximo, solucion] = maximizar(poblacionNueva)
 print("Maximo de la funcion :", maximo, "| En los valores :",solucion)
