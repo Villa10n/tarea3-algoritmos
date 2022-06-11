@@ -120,7 +120,7 @@ def numero_binario(array):
         array2.append(pos)
     return array2
 
-def maximizar(array):
+def nuevaGeneracion(array):
     pre_seleccion = torneo(array)
     binario = numero_binario(pre_seleccion)
     hijos_b = cruzamiento(binario)
@@ -129,10 +129,18 @@ def maximizar(array):
 
     return seleccion
 
+def maximizar(array):
+    maxi = funcionFitness(array)
+    ind = maxi.index(max(maxi))
+
+    return [maxi[0], array[ind]]
+
 
 # Creamos la poblacion inicial
 poblacioninicial = poblacionInicial(6)
 print("Poblacion inicial: ", poblacioninicial)
-# Ejecutamos la funcion maximizar
-poblacionNueva = maximizar(poblacioninicial)
+# Ejecutamos la funcion nuevaGeneracion
+poblacionNueva = nuevaGeneracion(poblacioninicial)
 print("Poblacion nueva: ", poblacionNueva)
+[maximo, solucion] = maximizar(poblacionNueva)
+print("Maximo de la funcion :", maximo, "| En los valores :",solucion)
